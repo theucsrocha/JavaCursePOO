@@ -1,0 +1,42 @@
+package application;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+import entites.Product;
+
+public class App {
+
+	public static void main(String[] args) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Matheus\\Desktop\\in.txt"))) {
+			boolean succes = new File("C:\\Users\\Matheus\\Desktop\\out\\in.txt").mkdir();
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Matheus\\Desktop\\out\\sumary.txt"))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					
+					String[] atributes = line.split(",");
+					String name = atributes[0];
+					double price = Double.parseDouble(atributes[1]);
+					int quantity = Integer.parseInt(atributes[2]);
+					Product product = new Product(name, price, quantity);
+					bw.write(product.result());
+					bw.newLine();
+				
+
+				}
+
+			}
+
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
+
+	}
+
+	
+}

@@ -1,0 +1,5 @@
+package agregation_exercise;
+
+public enum WorkerLevel {
+
+}

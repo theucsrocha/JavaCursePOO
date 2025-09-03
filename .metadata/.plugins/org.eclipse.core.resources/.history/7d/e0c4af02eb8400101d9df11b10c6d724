@@ -1,0 +1,41 @@
+package application;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import entites.Product;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		try(BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Matheus\\Desktop\\in.csv.txt"))){
+			try(BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Matheus\\Desktop\\sumary.csv.txt"))){
+				String line = br.readLine();
+				while(line != null ) {
+					String[] atributes = line.split(",");
+					String name = atributes[0];
+					double price = Double.parseDouble(atributes[1]);
+					int quantity = Integer.parseInt(atributes[2]);
+					Product product = new Product(name,price,quantity);
+					bw.write(product.result());
+					bw.newLine();
+					System.out.println(line);
+					line = br.readLine();
+					
+				}
+					
+			}
+			
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+		
+
+	}
+
+}

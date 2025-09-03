@@ -1,0 +1,8 @@
+package exceptions;
+
+public class LimitExceptions extends Exception {
+	
+	public LimitExcepitions(String msg) {
+		super(msg);
+	}
+}

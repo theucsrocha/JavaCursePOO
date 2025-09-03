@@ -1,0 +1,66 @@
+package curso_programacao;
+
+import java.util.Scanner;
+
+import CountMeneger.Bank;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Bank user;
+		double balance;
+		double value;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Welcome at Bank Account, enter your dates:");
+		System.out.println("Name:");
+		String name = sc.nextLine();
+		System.out.println("Number Account:");
+		int numberAccount = sc.nextInt();
+		System.out.println("Do you want enter your balance? (y or n)");
+		sc.nextLine();
+		String choice = sc.nextLine();
+		if(choice.equals("y")) {
+			System.out.println("Enter your balance:");
+			balance = sc.nextDouble();
+			user = new Bank(numberAccount,name,balance);
+		}
+		else {
+			user = new Bank(numberAccount,name);
+		}
+		
+		int i;
+		do {
+			System.out.println("Change you option: %n 1- Change name %n 2- Deposit %n 3- withdraw %n 4- Exit %n 5 - Show status");
+			i = sc.nextInt();
+			switch(i) {
+			case 1:
+				System.out.println("Enter the new name:");
+				sc.nextLine();
+				name = sc.nextLine();
+				user.setName(name);
+				
+				break;
+			case 2:
+				System.out.println("Enter the value of deposit:");
+				value = sc.nextDouble();
+				user.doposit(value);
+				break;
+				
+			case 3:
+				System.out.println("Enter the value of withdraw:");
+				value = sc.nextDouble();
+				user.withdrawal(value);
+				break;
+			case 4:
+				System.out.println("Exiting...");
+				break;
+			case 5:
+				System.out.println("Name:" + user.getName() + "Number Account: " + user.getNumberAccount() + "Balance: " + user.getBalance);
+			default:
+				System.out.println("The option dont exist!");
+		}}while(i!=4);
+		
+	sc.close();
+
+}
+}
